@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <title>DZ STORE</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Orbitron', sans-serif;
+            background: linear-gradient(270deg, #0f2027, #203a43, #2c5364);
+            background-size: 600% 600%;
+            animation: bgMove 15s ease infinite;
+            color: white;
+            text-align: center;
+        }
+
+        @keyframes bgMove {
+            0% {background-position: 0% 50%;}
+            50% {background-position: 100% 50%;}
+            100% {background-position: 0% 50%;}
+        }
+
+        .container {
+            padding: 50px 20px;
+        }
+
+        .title {
+            font-size: 50px;
+            color: #00f7ff;
+            text-shadow: 0 0 15px #00f7ff;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            font-size: 18px;
+            opacity: 0.9;
+            margin-bottom: 40px;
+        }
+
+        .services {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            max-width: 900px;
+            margin: auto;
+        }
+
+        .service-box {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 0 20px rgba(0, 247, 255, 0.3);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .service-box:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 0 30px rgba(0, 247, 255, 0.7);
+        }
+
+        .service-box h3 {
+            color: #00f7ff;
+            margin-bottom: 10px;
+        }
+
+        .discord-btn {
+            margin-top: 40px;
+        }
+
+        .discord-btn a {
+            text-decoration: none;
+            color: white;
+            background: #5865F2;
+            padding: 15px 35px;
+            border-radius: 30px;
+            font-size: 18px;
+            box-shadow: 0 0 20px rgba(88, 101, 242, 0.8);
+            transition: 0.3s;
+        }
+
+        .discord-btn a:hover {
+            background: #4752c4;
+            box-shadow: 0 0 30px rgba(88, 101, 242, 1);
+        }
+
+        footer {
+            margin-top: 50px;
+            font-size: 13px;
+            opacity: 0.6;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <div class="title">𝓓𝓩 ✦ 𝓢𝓣𝓞𝓡𝓔</div>
+    <div class="subtitle">
+        مرحباً بك في DZ STORE — متجر احترافي يقدم أفضل خدمات SAMP بجودة عالية واحترافية كاملة
+    </div>
+
+    <div class="services">
+        <div class="service-box">
+            <h3>🗺 MAPING SAMP</h3>
+            <p>تصميم مابات احترافية وواقعية حسب الطلب</p>
+        </div>
+
+        <div class="service-box">
+            <h3>🎨 TEXTDRAW</h3>
+            <p>TextDraw عصري وجذاب لواجهات السيرفر</p>
+        </div>
+
+        <div class="service-box">
+            <h3>💻 SCRIPT SAMP</h3>
+            <p>سكريبتات متطورة وآمنة وقابلة للتخصيص</p>
+        </div>
+
+        <div class="service-box">
+            <h3>👕 SKIN SAMP</h3>
+            <p>سكنات حصرية واحترافية لسيرفرك</p>
+        </div>
+    </div>
+
+    <div class="discord-btn">
+        <a href="https://discord.gg/bgMcT6FbVq" target="_blank">🚀 الانضمام إلى DZ STORE</a>
+    </div>
+
+    <footer>
+        © 2026 DZ STORE | All Rights Reserved
+    </footer>
+
+</div>
+
+</body>
+</html>
