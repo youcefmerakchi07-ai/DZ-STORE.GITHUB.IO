@@ -1,136 +1,1551 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <title>DZ STORE</title>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DZ Store Mods 1K - متجر التعديلات الشامل</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
     <style>
-        body {
+        :root {
+            --primary: #0066ff;
+            --primary-dark: #0052d4;
+            --secondary: #00d4ff;
+            --accent: #00ff88;
+            --dark: #0a192f;
+            --darker: #020c1b;
+            --light: #e6f1ff;
+            --card-bg: rgba(16, 42, 88, 0.8);
+            --discord: #5865F2;
+            --success: #00ff88;
+            --warning: #ffaa00;
+            --modal-bg: rgba(2, 12, 27, 0.95);
+            --form-bg: rgba(10, 25, 47, 0.95);
+        }
+
+        * {
             margin: 0;
-            font-family: 'Orbitron', sans-serif;
-            background: linear-gradient(270deg, #0f2027, #203a43, #2c5364);
-            background-size: 600% 600%;
-            animation: bgMove 15s ease infinite;
-            color: white;
-            text-align: center;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Cairo', sans-serif;
         }
 
-        @keyframes bgMove {
-            0% {background-position: 0% 50%;}
-            50% {background-position: 100% 50%;}
-            100% {background-position: 0% 50%;}
+        body {
+            background: linear-gradient(135deg, var(--darker) 0%, var(--dark) 50%, #0d2347 100%);
+            color: var(--light);
+            min-height: 100vh;
+            background-attachment: fixed;
+            overflow-x: hidden;
         }
 
-        .container {
-            padding: 50px 20px;
+        /* تخصيص شريط التمرير */
+        ::-webkit-scrollbar {
+            width: 12px;
         }
 
-        .title {
-            font-size: 50px;
-            color: #00f7ff;
-            text-shadow: 0 0 15px #00f7ff;
-            margin-bottom: 10px;
+        ::-webkit-scrollbar-track {
+            background: var(--dark);
         }
 
-        .subtitle {
-            font-size: 18px;
-            opacity: 0.9;
-            margin-bottom: 40px;
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 6px;
         }
 
-        .services {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            max-width: 900px;
-            margin: auto;
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--secondary);
         }
 
-        .service-box {
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 15px;
-            padding: 25px;
-            box-shadow: 0 0 20px rgba(0, 247, 255, 0.3);
-            transition: transform 0.3s, box-shadow 0.3s;
+        /* الشريط العلوي */
+        .top-bar {
+            background: rgba(10, 25, 47, 0.95);
+            padding: 0.8rem 2rem;
+            border-bottom: 2px solid var(--primary);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
         }
 
-        .service-box:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 0 30px rgba(0, 247, 255, 0.7);
-        }
-
-        .service-box h3 {
-            color: #00f7ff;
-            margin-bottom: 10px;
-        }
-
-        .discord-btn {
-            margin-top: 40px;
-        }
-
-        .discord-btn a {
+        .discord-banner {
+            background: linear-gradient(90deg, var(--discord), #4752c4);
+            padding: 0.5rem 1.5rem;
+            border-radius: 25px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
             text-decoration: none;
             color: white;
-            background: #5865F2;
-            padding: 15px 35px;
-            border-radius: 30px;
-            font-size: 18px;
-            box-shadow: 0 0 20px rgba(88, 101, 242, 0.8);
-            transition: 0.3s;
+            font-weight: bold;
+            animation: pulse 2s infinite;
+            box-shadow: 0 4px 15px rgba(88, 101, 242, 0.3);
         }
 
-        .discord-btn a:hover {
-            background: #4752c4;
-            box-shadow: 0 0 30px rgba(88, 101, 242, 1);
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
         }
 
+        .discord-banner:hover {
+            background: linear-gradient(90deg, #4752c4, var(--discord));
+            transform: translateY(-2px);
+        }
+
+        /* الهيدر الرئيسي */
+        header {
+            padding: 2rem;
+            text-align: center;
+            background: linear-gradient(rgba(2, 12, 27, 0.9), rgba(2, 12, 27, 0.7));
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(0, 102, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(0, 212, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 80%, rgba(0, 255, 136, 0.1) 0%, transparent 50%);
+            animation: gradientShift 15s ease infinite;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .logo {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .logo-icon {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            color: white;
+            box-shadow: 0 0 30px rgba(0, 102, 255, 0.5);
+            border: 3px solid var(--accent);
+        }
+
+        .logo-text h1 {
+            font-size: 3.5rem;
+            background: linear-gradient(90deg, var(--secondary), var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 0.5rem;
+        }
+
+        .tagline {
+            font-size: 1.2rem;
+            color: var(--light);
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* شريط التنقل */
+        .nav-container {
+            background: rgba(16, 42, 88, 0.9);
+            padding: 1rem 2rem;
+            border-radius: 15px;
+            margin: 2rem auto;
+            max-width: 1200px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 102, 255, 0.3);
+        }
+
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+
+        .nav-links a {
+            color: var(--light);
+            text-decoration: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s;
+            font-weight: 600;
+            border: 1px solid transparent;
+        }
+
+        .nav-links a:hover {
+            background: rgba(0, 102, 255, 0.2);
+            border-color: var(--primary);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 102, 255, 0.2);
+        }
+
+        .nav-links a i {
+            font-size: 1.2rem;
+        }
+
+        /* الأقسام الرئيسية */
+        .main-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .section {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 2.5rem;
+            margin-bottom: 3rem;
+            border: 1px solid rgba(0, 102, 255, 0.2);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+        }
+
+        .section-title {
+            font-size: 2.2rem;
+            margin-bottom: 2rem;
+            color: var(--secondary);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .section-title i {
+            color: var(--accent);
+        }
+
+        /* قسم الشراكة */
+        .partnership-section {
+            background: linear-gradient(135deg, rgba(0, 102, 255, 0.1), rgba(0, 212, 255, 0.1));
+            border-color: var(--accent);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .feature-box {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 2rem;
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .feature-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 212, 255, 0.2);
+        }
+
+        .feature-box i {
+            font-size: 3rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        .feature-box h3 {
+            color: var(--secondary);
+            margin-bottom: 1rem;
+        }
+
+        /* نافذة استمارة البائع */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 2000;
+            overflow-y: auto;
+        }
+
+        .modal-content {
+            background: var(--modal-bg);
+            max-width: 600px;
+            margin: 2rem auto;
+            border-radius: 25px;
+            border: 3px solid var(--primary);
+            box-shadow: 
+                0 0 50px rgba(0, 102, 255, 0.5),
+                0 0 100px rgba(0, 212, 255, 0.3),
+                inset 0 0 20px rgba(0, 102, 255, 0.2);
+            position: relative;
+            animation: modalAppear 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            overflow: hidden;
+        }
+
+        @keyframes modalAppear {
+            0% {
+                opacity: 0;
+                transform: scale(0.8) translateY(-50px);
+            }
+            70% {
+                transform: scale(1.05) translateY(10px);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        .modal-content::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                45deg,
+                transparent 30%,
+                rgba(0, 102, 255, 0.1) 50%,
+                transparent 70%
+            );
+            animation: shine 3s infinite linear;
+        }
+
+        @keyframes shine {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+
+        .modal-header {
+            background: linear-gradient(90deg, var(--primary), var(--primary-dark), var(--secondary));
+            padding: 1.8rem 2rem;
+            border-radius: 25px 25px 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .modal-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, 
+                transparent 0%,
+                rgba(255, 255, 255, 0.1) 50%,
+                transparent 100%);
+            animation: headerShine 3s infinite;
+        }
+
+        @keyframes headerShine {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        .modal-header h2 {
+            color: white;
+            font-size: 2.2rem;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            position: relative;
+        }
+
+        .close-modal {
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            font-size: 1.8rem;
+            cursor: pointer;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+            position: relative;
+            z-index: 2;
+        }
+
+        .close-modal:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: rotate(180deg) scale(1.1);
+            border-color: var(--accent);
+            box-shadow: 0 0 20px rgba(0, 255, 136, 0.5);
+        }
+
+        /* محتوى النموذج */
+        .form-content {
+            padding: 2.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .form-header {
+            text-align: center;
+            margin-bottom: 2.5rem;
+            position: relative;
+        }
+
+        .form-header::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            border-radius: 3px;
+        }
+
+        .form-title {
+            color: var(--secondary);
+            font-size: 2.2rem;
+            margin-bottom: 0.8rem;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+            background: linear-gradient(90deg, var(--secondary), var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .form-subtitle {
+            color: #a8c7ff;
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        /* حقول النموذج */
+        .form-group {
+            margin-bottom: 1.8rem;
+            position: relative;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 0.8rem;
+            color: var(--secondary);
+            font-weight: 700;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .form-label i {
+            color: var(--accent);
+            font-size: 1.1rem;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 1.2rem 1.5rem;
+            border-radius: 15px;
+            background: rgba(255, 255, 255, 0.07);
+            border: 2px solid rgba(0, 102, 255, 0.3);
+            color: white;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            backdrop-filter: blur(5px);
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 
+                0 0 0 3px rgba(0, 102, 255, 0.2),
+                0 0 20px rgba(0, 102, 255, 0.3);
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .form-input.valid {
+            border-color: var(--accent);
+            box-shadow: 0 0 10px rgba(0, 255, 136, 0.2);
+        }
+
+        .form-input.error {
+            border-color: #ff4444;
+            box-shadow: 0 0 10px rgba(255, 68, 68, 0.2);
+            animation: shake 0.5s;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+        }
+
+        .form-textarea {
+            width: 100%;
+            padding: 1.2rem 1.5rem;
+            border-radius: 15px;
+            background: rgba(255, 255, 255, 0.07);
+            border: 2px solid rgba(0, 102, 255, 0.3);
+            color: white;
+            font-size: 1.1rem;
+            min-height: 140px;
+            resize: vertical;
+            transition: all 0.3s;
+            backdrop-filter: blur(5px);
+        }
+
+        .form-textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 
+                0 0 0 3px rgba(0, 102, 255, 0.2),
+                0 0 20px rgba(0, 102, 255, 0.3);
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .form-select {
+            width: 100%;
+            padding: 1.2rem 1.5rem;
+            border-radius: 15px;
+            background: rgba(255, 255, 255, 0.07);
+            border: 2px solid rgba(0, 102, 255, 0.3);
+            color: white;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            backdrop-filter: blur(5px);
+            cursor: pointer;
+        }
+
+        .form-select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 
+                0 0 0 3px rgba(0, 102, 255, 0.2),
+                0 0 20px rgba(0, 102, 255, 0.3);
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .form-select option {
+            background: var(--darker);
+            color: white;
+            padding: 10px;
+        }
+
+        /* تلميحات الحقول */
+        .form-hint {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9rem;
+            color: #88aaff;
+            margin-top: 0.5rem;
+            padding: 0.5rem 0.8rem;
+            background: rgba(0, 102, 255, 0.1);
+            border-radius: 8px;
+            border-right: 3px solid var(--primary);
+        }
+
+        .form-hint i {
+            color: var(--accent);
+            font-size: 0.8rem;
+        }
+
+        /* خاص بحقل الديسكورد */
+        .discord-input-container {
+            position: relative;
+        }
+
+        .discord-format-examples {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 0.8rem;
+            margin-top: 1rem;
+        }
+
+        .format-example {
+            background: rgba(88, 101, 242, 0.1);
+            border: 1px solid rgba(88, 101, 242, 0.3);
+            border-radius: 10px;
+            padding: 0.8rem;
+            font-size: 0.9rem;
+            color: #a8c7ff;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .format-example:hover {
+            background: rgba(88, 101, 242, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .format-example i {
+            color: var(--discord);
+        }
+
+        /* أزرار النموذج */
+        .form-actions {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 2.5rem;
+        }
+
+        .btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            padding: 1.3rem 2.5rem;
+            border-radius: 15px;
+            text-decoration: none;
+            font-weight: 800;
+            transition: all 0.4s;
+            border: none;
+            cursor: pointer;
+            font-size: 1.2rem;
+            position: relative;
+            overflow: hidden;
+            letter-spacing: 0.5px;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, 
+                transparent, 
+                rgba(255, 255, 255, 0.2), 
+                transparent);
+            transition: 0.5s;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn-success {
+            flex: 1;
+            background: linear-gradient(135deg, var(--accent), #00cc77, #00aa55);
+            color: var(--dark);
+            box-shadow: 0 5px 20px rgba(0, 255, 136, 0.3);
+        }
+
+        .btn-success:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 
+                0 10px 30px rgba(0, 255, 136, 0.5),
+                0 0 40px rgba(0, 255, 136, 0.3);
+        }
+
+        .btn-secondary {
+            background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05));
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-secondary:hover {
+            background: linear-gradient(135deg, rgba(255,255,255,0.2), rgba(255,255,255,0.1));
+            transform: translateY(-3px);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        /* ملاحظة النموذج */
+        .form-note {
+            background: linear-gradient(135deg, 
+                rgba(0, 102, 255, 0.15), 
+                rgba(0, 212, 255, 0.1));
+            border: 2px solid rgba(0, 102, 255, 0.3);
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin-top: 2rem;
+            color: #cce0ff;
+            font-size: 1rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .form-note::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+        }
+
+        .form-note i {
+            color: var(--accent);
+            margin-left: 8px;
+            font-size: 1.3rem;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+
+        /* رسائل النجاح/الخطأ */
+        .validation-message {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 0.8rem 1rem;
+            border-radius: 10px;
+            margin-top: 0.8rem;
+            font-size: 0.95rem;
+            opacity: 0;
+            transform: translateY(-10px);
+            transition: all 0.3s;
+        }
+
+        .validation-message.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .validation-message.success {
+            background: rgba(0, 255, 136, 0.1);
+            border: 1px solid rgba(0, 255, 136, 0.3);
+            color: var(--accent);
+        }
+
+        .validation-message.error {
+            background: rgba(255, 68, 68, 0.1);
+            border: 1px solid rgba(255, 68, 68, 0.3);
+            color: #ff8888;
+        }
+
+        /* الفوتر */
         footer {
-            margin-top: 50px;
-            font-size: 13px;
-            opacity: 0.6;
+            background: rgba(2, 12, 27, 0.95);
+            padding: 3rem 2rem;
+            margin-top: 4rem;
+            border-top: 3px solid var(--primary);
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+        }
+
+        .footer-section h3 {
+            color: var(--secondary);
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+
+        .copyright {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #88aaff;
+        }
+
+        /* تحسينات للجوال */
+        @media (max-width: 768px) {
+            .logo-text h1 {
+                font-size: 2.5rem;
+            }
+            
+            .nav-links {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .modal-content {
+                margin: 1rem;
+                max-width: 95%;
+            }
+            
+            .form-actions {
+                flex-direction: column;
+            }
+            
+            .top-bar {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+            
+            .form-content {
+                padding: 1.8rem;
+            }
+            
+            .form-title {
+                font-size: 1.8rem;
+            }
+            
+            .discord-format-examples {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* تأثيرات خاصة */
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+
+        @keyframes floating {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+
+        /* نجمة الإعلان */
+        .announcement-star {
+            color: var(--accent);
+            animation: spin 4s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
     </style>
 </head>
 <body>
-
-<div class="container">
-
-    <div class="title">𝓓𝓩 ✦ 𝓢𝓣𝓞𝓡𝓔</div>
-    <div class="subtitle">
-        مرحباً بك في DZ STORE — متجر احترافي يقدم أفضل خدمات SAMP بجودة عالية واحترافية كاملة
+    <!-- الشريط العلوي -->
+    <div class="top-bar">
+        <div class="discord-announcement">
+            <span><i class="fas fa-star announcement-star"></i> انضم لسيرفرنا على ديسكورد للحصول على عروض حصرية!</span>
+        </div>
+        <a href="https://discord.gg/mrECuM5QQ" target="_blank" class="discord-banner">
+            <i class="fab fa-discord"></i>
+            انضم الآن - Discord
+        </a>
     </div>
 
-    <div class="services">
-        <div class="service-box">
-            <h3>🗺 MAPING SAMP</h3>
-            <p>تصميم مابات احترافية وواقعية حسب الطلب</p>
+    <!-- الهيدر الرئيسي -->
+    <header>
+        <div class="logo">
+            <div class="logo-icon floating">
+                <i class="fas fa-store"></i>
+            </div>
+            <div class="logo-text">
+                <h1>DZ Store Mods 1K</h1>
+                <p class="tagline">
+                    المركز الشامل لكل احتياجات سيرفرات SAMP | خدمات احترافية • دعم فني 24/7 • مجتمع ناشط
+                </p>
+            </div>
         </div>
+    </header>
 
-        <div class="service-box">
-            <h3>🎨 TEXTDRAW</h3>
-            <p>TextDraw عصري وجذاب لواجهات السيرفر</p>
-        </div>
-
-        <div class="service-box">
-            <h3>💻 SCRIPT SAMP</h3>
-            <p>سكريبتات متطورة وآمنة وقابلة للتخصيص</p>
-        </div>
-
-        <div class="service-box">
-            <h3>👕 SKIN SAMP</h3>
-            <p>سكنات حصرية واحترافية لسيرفرك</p>
+    <!-- شريط التنقل -->
+    <div class="nav-container">
+        <div class="nav-links">
+            <a href="#products"><i class="fas fa-shopping-cart"></i> المنتجات</a>
+            <a href="#partnership"><i class="fas fa-handshake"></i> شراكات وبائعين</a>
+            <a href="#services"><i class="fas fa-concierge-bell"></i> خدمات متخصصة</a>
+            <a href="#design"><i class="fas fa-palette"></i> التصاميم</a>
+            <a href="#support"><i class="fas fa-headset"></i> الدعم الفني</a>
         </div>
     </div>
 
-    <div class="discord-btn">
-        <a href="https://discord.gg/bgMcT6FbVq" target="_blank">🚀 الانضمام إلى DZ STORE</a>
+    <!-- المحتوى الرئيسي -->
+    <div class="main-content">
+        <!-- قسم الشراكة والبائعين -->
+        <section id="partnership" class="section partnership-section">
+            <h2 class="section-title"><i class="fas fa-handshake"></i> شراكات وفرص عمل</h2>
+            
+            <div class="features-grid">
+                <div class="feature-box">
+                    <i class="fas fa-user-tie"></i>
+                    <h3>انضم كبائع</h3>
+                    <p>تقدّم بطلب للانضمام كبائع في متجرنا والاستفادة من منصتنا الكبيرة</p>
+                    <button id="showSellerForm" class="btn btn-primary" style="margin-top: 1rem;">
+                        <i class="fas fa-user-plus"></i> تقديم طلب بائع
+                    </button>
+                </div>
+
+                <div class="feature-box">
+                    <i class="fas fa-hands-helping"></i>
+                    <h3>شراكة مع السيرفرات</h3>
+                    <p>نقدم شراكات استراتيجية مع سيرفرات الرولبلاي الكبيرة</p>
+                    <button id="showPartnershipModal" class="btn btn-accent" style="margin-top: 1rem;">
+                        <i class="fas fa-file-contract"></i> عرض نماذج الشراكة
+                    </button>
+                </div>
+
+                <div class="feature-box">
+                    <i class="fas fa-users-cog"></i>
+                    <h3>فريق الدعم</h3>
+                    <p>انضم إلى فريق الدعم الفني واحصل على مزايا حصرية</p>
+                    <a href="#support" class="btn btn-primary" style="margin-top: 1rem;">
+                        <i class="fas fa-headset"></i> انضم للفريق
+                    </a>
+                </div>
+            </div>
+        </section>
     </div>
 
-    <footer>
-        © 2026 DZ STORE | All Rights Reserved
+    <!-- نافذة استمارة البائع -->
+    <div id="sellerFormModal" class="modal-overlay">
+        <div class="modal-content seller-form-modal">
+            <div class="modal-header">
+                <h2><i class="fas fa-user-tie"></i> تقديم طلب بائع</h2>
+                <button class="close-modal" data-modal="sellerFormModal">&times;</button>
+            </div>
+            
+            <div class="form-content">
+                <div class="form-header">
+                    <div class="form-title">__** تقديم رول بائع **__</div>
+                    <div class="form-subtitle">__*** إستمارة رول بائع ***__</div>
+                </div>
+                
+                <form id="sellerApplicationForm">
+                    <!-- الاسم -->
+                    <div class="form-group">
+                        <label class="form-label">
+                            <i class="fas fa-user"></i>
+                            1 - إسمك : <span style="color: #ff4444;">*</span>
+                        </label>
+                        <input type="text" class="form-input" id="sellerName" required 
+                               placeholder="أدخل اسمك الكامل أو المستعار" maxlength="50">
+                        <div class="form-hint">
+                            <i class="fas fa-info-circle"></i>
+                            يمكن أن يكون اسمك الحقيقي أو المستعار المعروف به
+                        </div>
+                    </div>
+                    
+                    <!-- العمر -->
+                    <div class="form-group">
+                        <label class="form-label">
+                            <i class="fas fa-birthday-cake"></i>
+                            2 - عمرك : <span style="color: #ff4444;">*</span>
+                        </label>
+                        <input type="number" class="form-input" id="sellerAge" required 
+                               placeholder="أدخل عمرك (16-60 سنة)" min="16" max="60">
+                        <div class="form-hint">
+                            <i class="fas fa-info-circle"></i>
+                            يجب أن يكون عمرك بين 16 و 60 سنة للانضمام
+                        </div>
+                    </div>
+                    
+                    <!-- المنتجات -->
+                    <div class="form-group">
+                        <label class="form-label">
+                            <i class="fas fa-box-open"></i>
+                            3 - أشياء لي تبيعها : <span style="color: #ff4444;">*</span>
+                        </label>
+                        <textarea class="form-textarea" id="sellerProducts" required 
+                                  placeholder="صف المنتجات أو الخدمات التي تقدمها...
+مثال: سكريبتات SAMP، تصاميم TextDraw، حسابات ديسكورد، إلخ..."></textarea>
+                        <div class="form-hint">
+                            <i class="fas fa-info-circle"></i>
+                            اذكر بالتفصيل المنتجات أو الخدمات التي ستقوم ببيعها
+                        </div>
+                    </div>
+                    
+                    <!-- المستوى -->
+                    <div class="form-group">
+                        <label class="form-label">
+                            <i class="fas fa-chart-line"></i>
+                            4 - مستواك : <span style="color: #ff4444;">*</span>
+                        </label>
+                        <select class="form-select" id="sellerLevel" required>
+                            <option value="">اختر مستوى خبرتك</option>
+                            <option value="مبتدئ">مبتدئ - أقل من 6 أشهر خبرة</option>
+                            <option value="متوسط">متوسط - من 6 أشهر إلى سنة خبرة</option>
+                            <option value="محترف">محترف - أكثر من سنة خبرة</option>
+                            <option value="خبير">خبير - أكثر من سنتين خبرة</option>
+                        </select>
+                        <div class="form-hint">
+                            <i class="fas fa-info-circle"></i>
+                            اختر المستوى الذي يناسب خبرتك في المجال
+                        </div>
+                    </div>
+                    
+                    <!-- رابط الديسكورد -->
+                    <div class="form-group">
+                        <label class="form-label">
+                            <i class="fab fa-discord"></i>
+                            رابط حسابك على الديسكورد : <span style="color: #ff4444;">*</span>
+                        </label>
+                        <div class="discord-input-container">
+                            <input type="text" class="form-input" id="discordTag" required 
+                                   placeholder="أدخل رابط حسابك أو يوزرنيمك على الديسكورد">
+                            <div id="discordValidation" class="validation-message">
+                                <i class="fas fa-check-circle"></i>
+                                <span>الرابط صالح ✓</span>
+                            </div>
+                        </div>
+                        
+                        <!-- أمثلة للرابط -->
+                        <div class="discord-format-examples">
+                            <div class="format-example" onclick="setDiscordExample('username#1234')">
+                                <i class="fas fa-user-tag"></i>
+                                <span>اسم المستخدم: username#1234</span>
+                            </div>
+                            <div class="format-example" onclick="setDiscordExample('https://discord.gg/xxxxxx')">
+                                <i class="fas fa-link"></i>
+                                <span>رابط السيرفر: https://discord.gg/xxxxxx</span>
+                            </div>
+                            <div class="format-example" onclick="setDiscordExample('https://discord.com/users/123456789')">
+                                <i class="fas fa-user-circle"></i>
+                                <span>رابط الحساب: https://discord.com/users/123456789</span>
+                            </div>
+                            <div class="format-example" onclick="setDiscordExample('@username')">
+                                <i class="fas fa-at"></i>
+                                <span>المعرف الجديد: @username</span>
+                            </div>
+                        </div>
+                        
+                        <div class="form-hint">
+                            <i class="fas fa-lightbulb"></i>
+                            يمكنك إدخال أي شكل من أشكال رابط الديسكورد - النظام سيتعرف عليه تلقائياً
+                        </div>
+                    </div>
+                    
+                    <!-- التواجد -->
+                    <div class="form-group">
+                        <label class="form-label">
+                            <i class="fas fa-clock"></i>
+                            أيام وساعات تواجدك :
+                        </label>
+                        <input type="text" class="form-input" id="availability" 
+                               placeholder="مثال: كل يوم من 6 مساءً إلى 12 ليلاً، أو أيام الجمعة والسبت">
+                        <div class="form-hint">
+                            <i class="fas fa-info-circle"></i>
+                            حدد الأيام والساعات التي تكون متاح فيها للرد على العملاء
+                        </div>
+                    </div>
+                    
+                    <!-- ملاحظة -->
+                    <div class="form-note">
+                        <i class="fas fa-rocket"></i>
+                        بعد تقديم الطلب، سيتم توجيهك تلقائياً إلى سيرفر الديسكورد في روم التيكت الخاص بالبائعين
+                        <br>
+                        <small style="opacity: 0.8;">سيتم فتح نافذة جديدة للديسكورد</small>
+                    </div>
+                    
+                    <!-- أزرار الإرسال -->
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-success">
+                            <i class="fas fa-paper-plane"></i>
+                            تقديم الطلب والتوجه للديسكورد
+                        </button>
+                        <button type="button" class="btn btn-secondary" data-modal="sellerFormModal">
+                            <i class="fas fa-times"></i>
+                            إلغاء
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- الفوتر -->
+    <footer id="support">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>تواصل معنا</h3>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fab fa-discord"></i>
+                        <span>discord.gg/mrECuM5QQ</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>support@dzstoremods.com</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-section">
+                <h3>طرق الدفع</h3>
+                <div style="margin-top: 1rem; font-size: 2rem; color: #88aaff;">
+                    <i class="fas fa-credit-card" title="بطاقات ائتمان"></i>
+                    <i class="fab fa-cc-visa" title="فيزا"></i>
+                    <i class="fas fa-university" title="تحويل بنكي"></i>
+                </div>
+            </div>
+
+            <div class="footer-section">
+                <h3>انضم لمجتمعنا</h3>
+                <a href="https://discord.gg/mrECuM5QQ" target="_blank" class="btn btn-primary" style="margin-top: 1rem;">
+                    <i class="fab fa-discord"></i> سيرفر الديسكورد
+                </a>
+            </div>
+        </div>
+
+        <div class="copyright">
+            <p>© 2024 DZ Store Mods 1K. جميع الحقوق محفوظة</p>
+        </div>
     </footer>
 
-</div>
+    <script>
+        // ========================
+        // دالة التحقق من رابط الديسكورد - الإصدار المحسن
+        // ========================
+        function validateDiscordLink(input) {
+            const discordInput = input.trim();
+            const validationDiv = document.getElementById('discordValidation');
+            
+            // إزالة أي مسافات زائدة
+            const cleanedInput = discordInput.replace(/\s+/g, '');
+            
+            // أنماط التحقق المختلفة
+            const patterns = {
+                // username#1234
+                oldTag: /^[a-zA-Z0-9_]{2,32}#[0-9]{4}$/,
+                
+                // @username
+                newTag: /^@[a-zA-Z0-9_]{2,32}$/,
+                
+                // discord.gg/xxxx
+                inviteLink: /^(https?:\/\/)?(www\.)?discord\.gg\/[a-zA-Z0-9_-]+$/,
+                
+                // discord.com/invite/xxxx
+                inviteLink2: /^(https?:\/\/)?(www\.)?discord\.com\/invite\/[a-zA-Z0-9_-]+$/,
+                
+                // discord.com/users/123456789
+                userProfile: /^(https?:\/\/)?(www\.)?discord\.com\/users\/[0-9]{17,19}$/,
+                
+                // أرقام الهوية فقط (User ID)
+                userId: /^[0-9]{17,19}$/,
+                
+                // discordapp.com/users/123456789
+                userProfile2: /^(https?:\/\/)?(www\.)?discordapp\.com\/users\/[0-9]{17,19}$/,
+                
+                // أي رابط يحتوي على discord
+                anyDiscord: /discord/i
+            };
+            
+            // التحقق من كل نمط
+            let isValid = false;
+            let message = '';
+            let icon = 'fa-check-circle';
+            
+            if (patterns.oldTag.test(cleanedInput)) {
+                isValid = true;
+                message = 'اسم المستخدم القديم صالح ✓';
+            } else if (patterns.newTag.test(cleanedInput)) {
+                isValid = true;
+                message = 'المعرف الجديد صالح ✓';
+            } else if (patterns.inviteLink.test(cleanedInput) || patterns.inviteLink2.test(cleanedInput)) {
+                isValid = true;
+                message = 'رابط الدعوة صالح ✓';
+            } else if (patterns.userProfile.test(cleanedInput) || patterns.userProfile2.test(cleanedInput)) {
+                isValid = true;
+                message = 'رابط الحساب صالح ✓';
+            } else if (patterns.userId.test(cleanedInput)) {
+                isValid = true;
+                message = 'رقم الهوية صالح ✓';
+            } else if (patterns.anyDiscord.test(cleanedInput)) {
+                isValid = true;
+                message = 'تم اكتشاف رابط ديسكورد ✓';
+            } else if (cleanedInput.length > 0) {
+                // إذا لم يتطابق مع أي نمط ولكن يحتوي على نص
+                isValid = true; // نعمله صالح لأي نص (مرونة قصوى)
+                message = 'تم قبول الرابط (سيتم التحقق لاحقاً) ✓';
+                icon = 'fa-exclamation-circle';
+            } else {
+                isValid = false;
+                message = 'يرجى إدخال رابط الديسكورد';
+                icon = 'fa-times-circle';
+            }
+            
+            // تحديث واجهة المستخدم
+            const inputField = document.getElementById('discordTag');
+            if (isValid) {
+                inputField.classList.remove('error');
+                inputField.classList.add('valid');
+                validationDiv.className = 'validation-message success show';
+                validationDiv.innerHTML = `<i class="fas ${icon}"></i><span>${message}</span>`;
+            } else {
+                inputField.classList.remove('valid');
+                inputField.classList.add('error');
+                validationDiv.className = 'validation-message error show';
+                validationDiv.innerHTML = `<i class="fas ${icon}"></i><span>${message}</span>`;
+            }
+            
+            return isValid || cleanedInput.length > 5; // مرونة أكثر
+        }
 
+        // ========================
+        // دوال مساعدة
+        // ========================
+        
+        // تعيين مثال في حقل الديسكورد
+        window.setDiscordExample = function(example) {
+            const discordInput = document.getElementById('discordTag');
+            discordInput.value = example;
+            discordInput.focus();
+            validateDiscordLink(example);
+            
+            // تأثير مرئي
+            discordInput.style.boxShadow = '0 0 20px rgba(88, 101, 242, 0.5)';
+            setTimeout(() => {
+                discordInput.style.boxShadow = '';
+            }, 1000);
+        };
+
+        // إظهار رسالة نجاح مذهلة
+        function showEpicSuccessMessage(data) {
+            // إنشاء عنصر الرسالة
+            const messageDiv = document.createElement('div');
+            messageDiv.style.cssText = `
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%) scale(0.5);
+                background: linear-gradient(135deg, 
+                    rgba(0, 102, 255, 0.95), 
+                    rgba(0, 212, 255, 0.9),
+                    rgba(0, 255, 136, 0.85));
+                color: white;
+                padding: 3rem;
+                border-radius: 25px;
+                box-shadow: 
+                    0 0 50px rgba(0, 102, 255, 0.8),
+                    0 0 100px rgba(0, 212, 255, 0.6),
+                    0 0 150px rgba(0, 255, 136, 0.4);
+                z-index: 4000;
+                max-width: 500px;
+                width: 90%;
+                text-align: center;
+                border: 3px solid rgba(255, 255, 255, 0.3);
+                backdrop-filter: blur(10px);
+                animation: epicMessageAppear 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+            `;
+            
+            messageDiv.innerHTML = `
+                <div style="margin-bottom: 2rem;">
+                    <i class="fas fa-check-circle" style="font-size: 4rem; margin-bottom: 1rem; 
+                        animation: spin 2s linear infinite; color: var(--accent);"></i>
+                    <h2 style="font-size: 2.2rem; margin-bottom: 0.5rem; text-shadow: 0 2px 10px rgba(0,0,0,0.3);">
+                        🎉 تم تقديم طلبك بنجاح! 🎉
+                    </h2>
+                    <p style="font-size: 1.2rem; opacity: 0.9;">
+                        سيتم التواصل معك قريباً عبر الديسكورد
+                    </p>
+                </div>
+                
+                <div style="background: rgba(255,255,255,0.1); border-radius: 15px; padding: 1.5rem; margin: 1.5rem 0;">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; text-align: right;">
+                        <div>
+                            <strong>👤 الاسم:</strong>
+                            <p>${data.name}</p>
+                        </div>
+                        <div>
+                            <strong>🎯 المستوى:</strong>
+                            <p>${data.level}</p>
+                        </div>
+                        <div>
+                            <strong>📅 العمر:</strong>
+                            <p>${data.age} سنة</p>
+                        </div>
+                        <div>
+                            <strong>🆔 الديسكورد:</strong>
+                            <p style="direction: ltr;">${data.discordTag}</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 2rem; padding-top: 1.5rem; border-top: 2px solid rgba(255,255,255,0.2);">
+                    <div style="display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 1rem;">
+                        <i class="fas fa-clock" style="color: var(--accent);"></i>
+                        <span>سيتم توجيهك إلى الديسكورد خلال <span id="countdown">3</span> ثوانٍ</span>
+                    </div>
+                    <div style="background: rgba(0,0,0,0.2); border-radius: 10px; height: 10px; overflow: hidden;">
+                        <div id="progressBar" style="height: 100%; background: linear-gradient(90deg, var(--accent), var(--secondary)); 
+                            width: 0%; transition: width 1s linear;"></div>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 1.5rem; font-size: 0.9rem; opacity: 0.8;">
+                    <i class="fas fa-info-circle"></i>
+                    سيتم فتح نافذة جديدة لسيرفر الديسكورد
+                </div>
+            `;
+            
+            document.body.appendChild(messageDiv);
+            
+            // بدء العد التنازلي
+            let countdown = 3;
+            const countdownElement = messageDiv.querySelector('#countdown');
+            const progressBar = messageDiv.querySelector('#progressBar');
+            
+            const countdownInterval = setInterval(() => {
+                countdown--;
+                countdownElement.textContent = countdown;
+                progressBar.style.width = `${((3 - countdown) / 3) * 100}%`;
+                
+                if (countdown <= 0) {
+                    clearInterval(countdownInterval);
+                    
+                    // تأثير اختفاء الرسالة
+                    messageDiv.style.animation = 'epicMessageDisappear 0.5s forwards';
+                    setTimeout(() => {
+                        if (messageDiv.parentNode) {
+                            messageDiv.parentNode.removeChild(messageDiv);
+                        }
+                        
+                        // توجيه إلى الديسكورد
+                        window.open('https://discord.gg/mrECuM5QQ', '_blank');
+                        
+                        // إغلاق النموذج
+                        sellerFormModal.style.display = 'none';
+                        document.body.style.overflow = 'auto';
+                        
+                        // إعادة تعيين النموذج
+                        sellerApplicationForm.reset();
+                    }, 500);
+                }
+            }, 1000);
+        }
+
+        // ========================
+        // الأحداث والمستمعون
+        // ========================
+        
+        // عناصر DOM
+        const sellerFormModal = document.getElementById('sellerFormModal');
+        const showSellerFormBtn = document.getElementById('showSellerForm');
+        const sellerApplicationForm = document.getElementById('sellerApplicationForm');
+        const discordInput = document.getElementById('discordTag');
+
+        // التحقق أثناء الكتابة في حقل الديسكورد
+        discordInput.addEventListener('input', function(e) {
+            validateDiscordLink(e.target.value);
+        });
+
+        // التحقق عند ترك الحقل
+        discordInput.addEventListener('blur', function(e) {
+            validateDiscordLink(e.target.value);
+        });
+
+        // فتح نافذة استمارة البائع
+        showSellerFormBtn.addEventListener('click', () => {
+            sellerFormModal.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+            
+            // تأثير دخول رائع
+            const modalContent = sellerFormModal.querySelector('.modal-content');
+            modalContent.style.animation = 'modalAppear 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55)';
+        });
+
+        // إغلاق النوافذ
+        document.querySelectorAll('.close-modal, [data-modal]').forEach(btn => {
+            if (btn.classList.contains('close-modal') || btn.hasAttribute('data-modal')) {
+                btn.addEventListener('click', function() {
+                    const modalId = this.getAttribute('data-modal');
+                    const modal = modalId ? document.getElementById(modalId) : 
+                                this.closest('.modal-overlay');
+                    
+                    if (modal) {
+                        modal.style.display = 'none';
+                        document.body.style.overflow = 'auto';
+                    }
+                });
+            }
+        });
+
+        // إغلاق النافذة عند النقر خارجها
+        document.querySelectorAll('.modal-overlay').forEach(modal => {
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    modal.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                }
+            });
+        });
+
+        // تقديم النموذج
+        sellerApplicationForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            // جمع البيانات
+            const formData = {
+                name: document.getElementById('sellerName').value.trim(),
+                age: document.getElementById('sellerAge').value,
+                products: document.getElementById('sellerProducts').value.trim(),
+                level: document.getElementById('sellerLevel').value,
+                discordTag: discordInput.value.trim(),
+                availability: document.getElementById('availability').value.trim(),
+                timestamp: new Date().toLocaleString('ar-EG'),
+                ip: 'جاري التحقق...'
+            };
+            
+            // التحقق الأساسي
+            if (!formData.name || formData.name.length < 2) {
+                alert('الرجاء إدخال اسم صحيح (حرفين على الأقل)');
+                document.getElementById('sellerName').focus();
+                return;
+            }
+            
+            if (!formData.age || formData.age < 16 || formData.age > 60) {
+                alert('يجب أن يكون عمرك بين 16 و 60 سنة');
+                document.getElementById('sellerAge').focus();
+                return;
+            }
+            
+            if (!formData.products || formData.products.length < 10) {
+                alert('الرجاء وصف المنتجات أو الخدمات بشكل مفصل (10 أحرف على الأقل)');
+                document.getElementById('sellerProducts').focus();
+                return;
+            }
+            
+            if (!formData.level) {
+                alert('الرجاء اختيار مستوى خبرتك');
+                document.getElementById('sellerLevel').focus();
+                return;
+            }
+            
+            // التحقق من الديسكورد (مرن جداً)
+            if (!formData.discordTag || formData.discordTag.length < 3) {
+                alert('الرجاء إدخال رابط أو معرف الديسكورد');
+                discordInput.focus();
+                return;
+            }
+            
+            // حفظ البيانات
+            saveApplication(formData);
+            
+            // عرض رسالة النجاح المذهلة
+            showEpicSuccessMessage(formData);
+        });
+
+        // حفظ الطلب
+        function saveApplication(data) {
+            try {
+                const applications = JSON.parse(localStorage.getItem('sellerApplications') || '[]');
+                const application = {
+                    ...data,
+                    id: Date.now(),
+                    status: 'pending',
+                    submittedAt: new Date().toISOString()
+                };
+                
+                applications.push(application);
+                localStorage.setItem('sellerApplications', JSON.stringify(applications));
+                console.log('✅ تم حفظ طلب البائع:', application);
+            } catch (error) {
+                console.error('❌ خطأ في حفظ الطلب:', error);
+            }
+        }
+
+        // ========================
+        // تحميل الصفحة
+        // ========================
+        document.addEventListener('DOMContentLoaded', () => {
+            // إضافة أنماط CSS للرسائل
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes epicMessageAppear {
+                    0% {
+                        opacity: 0;
+                        transform: translate(-50%, -50%) scale(0.3) rotate(-180deg);
+                    }
+                    70% {
+                        transform: translate(-50%, -50%) scale(1.1) rotate(10deg);
+                    }
+                    100% {
+                        opacity: 1;
+                        transform: translate(-50%, -50%) scale(1) rotate(0deg);
+                    }
+                }
+                
+                @keyframes epicMessageDisappear {
+                    0% {
+                        opacity: 1;
+                        transform: translate(-50%, -50%) scale(1);
+                    }
+                    100% {
+                        opacity: 0;
+                        transform: translate(-50%, -50%) scale(0.5) rotate(180deg);
+                    }
+                }
+            `;
+            document.head.appendChild(style);
+            
+            // تأثيرات الظهور للعناصر
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -100px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.feature-box').forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(30px)';
+                el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(el);
+            });
+
+            // تأثير الكتابة على الشعار
+            const tagline = document.querySelector('.tagline');
+            if (tagline) {
+                const originalText = tagline.textContent;
+                tagline.textContent = '';
+                
+                let i = 0;
+                function typeWriter() {
+                    if (i < originalText.length) {
+                        tagline.textContent += originalText.charAt(i);
+                        i++;
+                        setTimeout(typeWriter, 30);
+                    }
+                }
+                
+                setTimeout(typeWriter, 1000);
+            }
+        });
+    </script>
 </body>
 </html>
